@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para mi maldito capibara... ❤️ | 15 de Octubre</title>
+  
+  <!-- Estilos de Scrapbook Artesanal -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Favicon delicado -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%22">
+</head>
+<body>
+
+  <!-- ======================================================================
+       ✉️ EXPERIENCIA INICIAL: PANTALLA DE APERTURA (EL SOBRE DE REGALO)
+       ====================================================================== -->
+  <div class="pantalla-apertura" id="pantalla-apertura">
+    <div class="sobre-contenedor">
+      <div class="sobre-tarjeta">
+        <div class="sello-cera">❤️</div>
+        <h1 class="sobre-titulo">Para mi maldito capibara... ❤️</h1>
+        <div class="sobre-fecha">15 de octubre</div>
+        <div class="sobre-cinta-decorativa">
+          <span></span>
+          <div style="font-size: 16px; color: var(--color-dorado);">✦</div>
+          <span></span>
+        </div>
+        <button class="boton-abrir-regalo" id="btn-abrir-regalo">
+          Abre tu regalo <span class="flecha-boton">→</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       🎵 REPRODUCTOR DE MÚSICA DISCRETO (FLOTANTE)
+       ====================================================================== -->
+  <div class="reproductor-flotante" id="reproductor-flotante">
+    <button class="btn-musica-control" id="btn-musica-toggle" title="Reproducir / Pausar">▶</button>
+    <div class="musica-info">
+      <span class="musica-titulo" id="musica-titulo-cancion">Nuestra canción ✨</span>
+      <span class="musica-estado" id="musica-estado-texto">Pausa</span>
+    </div>
+    <div class="ondas-musica">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       📒 ÁLBUM SCRAPBOOK PRINCIPAL
+       ====================================================================== -->
+  <main class="album-contenedor">
+
+    <!-- ------------------------------------------------------------------
+         PORTADA DEL SCRAPBOOK
+         ------------------------------------------------------------------ -->
+    <header class="portada-scrapbook">
+      <!-- Cinta washi tape decorativa en la esquina superior -->
+      <div class="washi-tape tape-dorado" style="top: -10px; left: 40px; width: 110px; transform: rotate(-3deg);"></div>
+      <div class="washi-tape tape-rosa" style="top: -10px; right: 40px; width: 95px; transform: rotate(2deg);"></div>
+
+      <div class="portada-encabezado">
+        <div class="portada-fecha-sello" id="portada-fecha-sello">15 · 10 · 2008</div>
+        <h1 class="portada-titulo" id="portada-titulo">Nuestro pequeño álbum de recuerdos</h1>
+        <p class="portada-subtitulo" id="portada-subtitulo">Para celebrar al hombre que hace mis días mucho más bonitos.</p>
+      </div>
+
+      <!-- Fotografía Principal Polaroid -->
+      <div class="polaroid-portada-wrapper">
+        <!-- Cintas en las esquinas de la foto -->
+        <div class="washi-tape tape-terracota" style="top: -12px; left: -10px; width: 85px; transform: rotate(-25deg); background-color: rgba(212, 130, 112, 0.8);"></div>
+        <div class="washi-tape tape-vino" style="bottom: 25px; right: -15px; width: 80px; transform: rotate(18deg);"></div>
+
+        <!-- Anotaciones manuscritas alrededor -->
+        <div class="anotacion-manuscrita anotacion-1" id="portada-nota-1">mi persona favorita ✨</div>
+        <div class="anotacion-manuscrita anotacion-3" id="portada-nota-3">❤️</div>
+
+        <div class="polaroid-foto">
+          <div class="polaroid-imagen-contenedor">
+            <img id="portada-foto-img" src="" alt="Nosotros">
+          </div>
+          <div class="polaroid-pie-manuscrito" id="portada-pie-foto">Juntos en cada paso</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN 1 — "Y ENTONCES LLEGASTE TÚ"
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook" id="seccion-historia">
+      <div class="encabezado-seccion">
+        <span class="seccion-badge">Capítulo I</span>
+        <h2 class="seccion-titulo" id="sec1-titulo">Y entonces llegaste tú...</h2>
+        <p class="seccion-subtitulo" id="sec1-subtitulo">El día en que todo empezó a tener un color diferente</p>
+      </div>
+
+      <div class="pagina-historia-scrapbook" id="sec1-elementos">
+        <!-- Renderizado dinámico desde config.js -->
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN 2 — "MIS RECUERDOS FAVORITOS CONTIGO" (GALERÍA POLAROID)
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook" id="seccion-galeria">
+      <div class="encabezado-seccion">
+        <span class="seccion-badge">Capítulo II</span>
+        <h2 class="seccion-titulo" id="sec2-titulo">Mis recuerdos favoritos contigo</h2>
+        <p class="seccion-subtitulo" id="sec2-subtitulo">Instantes que guardo en el corazón como pequeños tesoros (Toca cada foto para ver el recuerdo)</p>
+      </div>
+
+      <div class="galeria-polaroid-grid" id="sec2-grid">
+        <!-- Renderizado dinámico desde config.js -->
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN 3 — "COSAS QUE AMO DE TI" (POST-ITS / NOTAS ADHESIVAS)
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook" id="seccion-cosas-que-amo">
+      <div class="encabezado-seccion">
+        <span class="seccion-badge">Capítulo III</span>
+        <h2 class="seccion-titulo" id="sec3-titulo">Cosas que amo de ti</h2>
+        <p class="seccion-subtitulo" id="sec3-subtitulo">Pequeños y grandes motivos por los que te elijo cada día</p>
+      </div>
+
+      <div class="mural-notas-grid" id="sec3-grid">
+        <!-- Renderizado dinámico desde config.js -->
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN 4 — "NUESTRO TIMELINE" (LÍNEA DIBUJADA A MANO)
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook" id="seccion-timeline">
+      <div class="encabezado-seccion">
+        <span class="seccion-badge">Capítulo IV</span>
+        <h2 class="seccion-titulo" id="sec4-titulo">Nuestra historia paso a paso</h2>
+        <p class="seccion-subtitulo" id="sec4-subtitulo">Los momentos que fueron construyendo nuestro mundo</p>
+      </div>
+
+      <div class="timeline-scrapbook" id="sec4-contenedor">
+        <!-- Renderizado dinámico desde config.js -->
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN 5 — "PEQUEÑAS COSAS QUE ME HACEN PENSAR EN TI" (COLLAGE)
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook" id="seccion-detalles">
+      <div class="encabezado-seccion">
+        <span class="seccion-badge">Capítulo V</span>
+        <h2 class="seccion-titulo" id="sec5-titulo">Pequeñas cosas que me hacen pensar en ti</h2>
+        <p class="seccion-subtitulo" id="sec5-subtitulo">El mundo está lleno de detalles cotidianos que llevan tu nombre</p>
+        <div style="font-family: var(--font-manuscrita); font-size: 1.25rem; color: var(--color-dorado); margin-top: 6px;" id="sec5-instruccion">
+          (Toca o haz clic en cada recorte para descubrir la nota ✨)
+        </div>
+      </div>
+
+      <div class="collage-objetos-contenedor" id="sec5-grid">
+        <!-- Renderizado dinámico desde config.js -->
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN 6 — "SI PUDIERA GUARDAR MOMENTOS..." (MINIMALISTA)
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook" id="seccion-guardar">
+      <div class="momento-guardar-contenedor">
+        <div class="washi-tape tape-dorado" style="top: -12px; left: 50%; transform: translateX(-50%); width: 130px;"></div>
+        
+        <p class="frase-central-guardar" id="sec6-frase">
+          "Si pudiera guardar para siempre algunos momentos de mi vida, elegiría muchos de los que viví contigo."
+        </p>
+
+        <div class="carta-manuscrita-hoja" id="sec6-carta">
+          <!-- Renderizado dinámico desde config.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN 7 — "Y TODAVÍA NOS QUEDAN MUCHÍSIMAS HISTORIAS" (FUTURO)
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook" id="seccion-futuro">
+      <div class="encabezado-seccion">
+        <span class="seccion-badge">Capítulo VII</span>
+        <h2 class="seccion-titulo" id="sec7-titulo">Y todavía nos quedan muchísimas historias...</h2>
+        <p class="seccion-subtitulo">Nuestros próximos sueños por tachar en la lista:</p>
+      </div>
+
+      <div class="mural-suenos-grid" id="sec7-grid">
+        <!-- Renderizado dinámico desde config.js -->
+      </div>
+
+      <p class="cierre-esperanzador-frase" id="sec7-frase-destacada">
+        "Esto no es el final del álbum. Es apenas una de mis páginas favoritas."
+      </p>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         SECCIÓN FINAL — CARTA DE CUMPLEAÑOS
+         ------------------------------------------------------------------ -->
+    <section class="seccion-scrapbook seccion-carta-cumpleanos" id="seccion-carta-final">
+      <!-- Partículas decorativas sutiles -->
+      <div class="particulas-flotantes">
+        <span class="particula-item" style="top: 10%; left: 8%;">✨</span>
+        <span class="particula-item" style="top: 25%; right: 10%; animation-delay: 2s;">❤️</span>
+        <span class="particula-item" style="bottom: 15%; left: 12%; animation-delay: 4s;">✦</span>
+        <span class="particula-item" style="bottom: 25%; right: 14%; animation-delay: 1.5s;">✨</span>
+      </div>
+
+      <div class="carta-sobre-abierto">
+        <div class="washi-tape tape-vino" style="top: -14px; left: 50%; transform: translateX(-50%); width: 140px;"></div>
+
+        <h2 class="carta-titulo-cumple" id="carta-titulo">Feliz cumpleaños, mi amor ❤️</h2>
+        
+        <div class="carta-cuerpo-texto" id="carta-cuerpo">
+          <!-- Renderizado dinámico desde config.js -->
+        </div>
+
+        <div class="carta-firma-bloque">
+          <div class="carta-despedida" id="carta-despedida">Con todo mi amor,</div>
+          <div class="carta-firma-nombre" id="carta-firma">[MI NOMBRE]</div>
+          <div class="carta-firma-fecha" id="carta-fecha">15 de octubre</div>
+        </div>
+      </div>
+
+      <!-- Detalle Especial Final: Botón de Revelación -->
+      <div class="bloque-sorpresa-final">
+        <button class="btn-sorpresa-magica" id="btn-abrir-sorpresa">
+          Una última sorpresa ✨
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       🔐 ACCESO AL MENSAJE SECRETO
+       ====================================================================== -->
+  <div class="modal-acceso-sorpresa" id="modal-acceso-sorpresa" role="dialog" aria-modal="true" aria-labelledby="titulo-acceso-sorpresa">
+    <form class="modal-contenido-acceso" id="form-acceso-sorpresa">
+      <div class="modal-icono" aria-hidden="true">🔐</div>
+      <h3 class="modal-titulo" id="titulo-acceso-sorpresa">Una última sorpresa</h3>
+      <label class="etiqueta-pin" for="pin-sorpresa">Introduce el PIN de 5 letras</label>
+      <input class="input-pin-sorpresa" id="pin-sorpresa" name="pin" type="password" minlength="5" maxlength="5" pattern="[A-Za-z]{5}" autocomplete="off" aria-describedby="pista-pin-sorpresa error-pin-sorpresa" required>
+      <p class="pista-pin-sorpresa" id="pista-pin-sorpresa">Golosina infantable:</p>
+      <p class="error-pin-sorpresa" id="error-pin-sorpresa" aria-live="polite"></p>
+      <div class="acciones-acceso-sorpresa">
+        <button class="btn-cerrar-modal" id="btn-cerrar-acceso-sorpresa" type="button">Ahora no</button>
+        <button class="btn-sorpresa-magica" type="submit">Desbloquear</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ======================================================================
+       🎁 MODAL DE LA SORPRESA FINAL
+       ====================================================================== -->
+  <div class="modal-sorpresa" id="modal-sorpresa">
+    <div class="modal-contenido-dorado">
+      <div class="modal-icono" id="modal-sorpresa-icono">🎁</div>
+      <h3 class="modal-titulo" id="modal-sorpresa-titulo">Para ti, con todo mi amor 💖</h3>
+      <p class="modal-mensaje" id="modal-sorpresa-mensaje">
+        <!-- Renderizado dinámico desde config.js -->
+      </p>
+      <button class="btn-cerrar-modal" id="btn-cerrar-sorpresa">Guardar con cariño ❤️</button>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       🖼️ MODAL LIGHTBOX PARA VER POLAROID DETALLADA
+       ====================================================================== -->
+  <div class="modal-detalle-foto" id="modal-detalle-foto">
+    <div class="tarjeta-polaroid-expandida">
+      <button class="btn-cerrar-foto" id="btn-cerrar-foto" title="Cerrar">✕</button>
+      <div class="modal-foto-grande-wrap">
+        <img id="modal-foto-img" src="" alt="Recuerdo">
+      </div>
+      <div class="modal-foto-titulo" id="modal-foto-titulo">Nuestro recuerdo</div>
+      <div class="modal-foto-fecha" id="modal-foto-fecha">15 de octubre</div>
+      <p class="modal-foto-desc" id="modal-foto-desc"></p>
+    </div>
+  </div>
+
+  <!-- Canvas para lluvia de confeti dorado y vino tinto -->
+  <canvas id="canvas-confeti"></canvas>
+
+  <!-- ======================================================================
+       SCRIPTS: Configuración primero, luego aplicación
+       ====================================================================== -->
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

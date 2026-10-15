@@ -1,0 +1,1697 @@
+/* ==========================================================================
+   🎨 NUESTRO PEQUEÑO ÁLBUM DE RECUERDOS — ESTILOS DE SCRAPBOOK ARTESANAL
+   ========================================================================== */
+
+/* --- IMPORTACIÓN DE FUENTES GOOGLE --- */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* --- VARIABLES DE COLOR Y ESTÉTICA --- */
+:root {
+  /* Paleta artesanal */
+  --color-fondo-principal: #FAF7F0;
+  --color-fondo-papel: #FFFDF9;
+  --color-papel-marfil: #FBF8F2;
+  --color-papel-beige: #F3ECE1;
+  --color-papel-kraft: #E8DCC9;
+  
+  /* Tonos románticos y acentos */
+  --color-terracota: #D48270;
+  --color-terracota-suave: #E8A89B;
+  --color-rosa-empolvado: #E8C9CC;
+  --color-rosa-suave: #F4E4E6;
+  --color-rojo-vino: #782333;
+  --color-rojo-vino-hover: #601A27;
+  --color-dorado: #C9A464;
+  --color-dorado-suave: #E0C28A;
+  
+  /* Textos y sombras */
+  --color-texto-tinta: #362E2B;
+  --color-texto-suave: #685D58;
+  --color-texto-claro: #8C7F78;
+  --linea-cuaderno: rgba(180, 160, 150, 0.22);
+  
+  /* Sombras realistas de papel y scrapbook */
+  --sombra-papel: 0 4px 15px rgba(50, 35, 25, 0.06), 0 1px 3px rgba(50, 35, 25, 0.04);
+  --sombra-polaroid: 0 8px 24px rgba(45, 30, 20, 0.12), 0 2px 6px rgba(45, 30, 20, 0.06);
+  --sombra-elevada: 0 18px 38px rgba(40, 25, 15, 0.18), 0 6px 12px rgba(40, 25, 15, 0.08);
+  --sombra-tape: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  /* Tipografías */
+  --font-manuscrita: 'Caveat', cursive, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-lectura: 'Lora', Georgia, serif;
+  --font-interfaz: 'Plus Jakarta Sans', system-ui, sans-serif;
+  
+  /* Transiciones */
+  --transicion-suave: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transicion-rapida: all 0.25s ease;
+}
+
+/* --- RESET Y BASE --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-fondo-principal);
+}
+
+body {
+  font-family: var(--font-lectura);
+  color: var(--color-texto-tinta);
+  background-color: var(--color-fondo-principal);
+  background-image: 
+    radial-gradient(circle at 15% 20%, rgba(232, 201, 204, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 85% 65%, rgba(212, 130, 112, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(201, 164, 100, 0.1) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Selección de texto con tono vino romántico */
+::selection {
+  background: var(--color-rosa-empolvado);
+  color: var(--color-rojo-vino);
+}
+
+/* ==========================================================================
+   ✉️ EXPERIENCIA INICIAL: PANTALLA DE APERTURA (EL SOBRE DE REGALO)
+   ========================================================================== */
+.pantalla-apertura {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #251B1A;
+  background: radial-gradient(circle at center, #3A2926 0%, #1A1313 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s ease;
+}
+
+.pantalla-apertura.abierta {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sobre-contenedor {
+  width: 100%;
+  max-width: 480px;
+  perspective: 1200px;
+}
+
+.sobre-tarjeta {
+  background: var(--color-papel-marfil);
+  border-radius: 12px;
+  padding: 40px 30px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  text-align: center;
+  position: relative;
+  border: 1px solid rgba(201, 164, 100, 0.35);
+  transform: translateY(0);
+  transition: transform 0.6s ease;
+  overflow: hidden;
+}
+
+.sobre-tarjeta::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px dashed rgba(120, 35, 51, 0.2);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.sello-cera {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 20px;
+  background: radial-gradient(circle at 35% 35%, #9E2B3E, var(--color-rojo-vino) 80%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFE5B4;
+  font-size: 26px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3), inset 0 -2px 6px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  position: relative;
+  animation: pulsoSello 3s infinite ease-in-out;
+}
+
+.sello-cera::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px dashed rgba(201, 164, 100, 0.4);
+}
+
+@keyframes pulsoSello {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.sobre-titulo {
+  font-family: var(--font-manuscrita);
+  font-size: 2.2rem;
+  color: var(--color-rojo-vino);
+  line-height: 1.25;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.sobre-fecha {
+  font-family: var(--font-interfaz);
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.sobre-cinta-decorativa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.sobre-cinta-decorativa span {
+  height: 1px;
+  width: 50px;
+  background: linear-gradient(to right, transparent, var(--color-dorado), transparent);
+}
+
+.boton-abrir-regalo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--color-rojo-vino);
+  color: #FFFDF9;
+  border: none;
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-family: var(--font-interfaz);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(120, 35, 51, 0.35);
+  transition: var(--transicion-suave);
+  position: relative;
+  overflow: hidden;
+}
+
+.boton-abrir-regalo:hover {
+  background: var(--color-rojo-vino-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 26px rgba(120, 35, 51, 0.45);
+}
+
+.boton-abrir-regalo:active {
+  transform: translateY(1px);
+}
+
+.flecha-boton {
+  transition: transform 0.3s ease;
+}
+
+.boton-abrir-regalo:hover .flecha-boton {
+  transform: translateX(5px);
+}
+
+/* ==========================================================================
+   🎵 REPRODUCTOR DE MÚSICA DISCRETO (FLOTANTE)
+   ========================================================================== */
+.reproductor-flotante {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 253, 249, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 16px 8px 10px;
+  border-radius: 50px;
+  box-shadow: 0 6px 20px rgba(45, 30, 20, 0.15), 0 0 0 1px rgba(201, 164, 100, 0.25);
+  transition: var(--transicion-suave);
+}
+
+.reproductor-flotante:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(45, 30, 20, 0.2);
+}
+
+.btn-musica-control {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-rojo-vino);
+  color: #FFFDF9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: var(--transicion-rapida);
+  box-shadow: 0 2px 8px rgba(120, 35, 51, 0.3);
+}
+
+.btn-musica-control:hover {
+  transform: scale(1.08);
+}
+
+.musica-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 130px;
+}
+
+.musica-titulo {
+  font-family: var(--font-interfaz);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-texto-tinta);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.musica-estado {
+  font-family: var(--font-manuscrita);
+  font-size: 0.95rem;
+  color: var(--color-rojo-vino);
+  line-height: 1;
+}
+
+.ondas-musica {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+  margin-left: 2px;
+}
+
+.ondas-musica span {
+  width: 3px;
+  height: 4px;
+  background-color: var(--color-dorado);
+  border-radius: 2px;
+  transition: height 0.2s ease;
+}
+
+.reproduciendo .ondas-musica span:nth-child(1) { animation: onda 1.2s infinite ease-in-out; }
+.reproduciendo .ondas-musica span:nth-child(2) { animation: onda 0.8s infinite 0.2s ease-in-out; }
+.reproduciendo .ondas-musica span:nth-child(3) { animation: onda 1s infinite 0.4s ease-in-out; }
+
+@keyframes onda {
+  0%, 100% { height: 4px; }
+  50% { height: 16px; }
+}
+
+/* ==========================================================================
+   📒 ESTRUCTURA GENERAL DEL ÁLBUM / SCRAPBOOK
+   ========================================================================== */
+.album-contenedor {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 20px 20px 100px;
+  position: relative;
+}
+
+/* Cinta adhesiva (Washi Tape) reutilizable */
+.washi-tape {
+  position: absolute;
+  height: 28px;
+  background-color: rgba(217, 136, 128, 0.75);
+  box-shadow: var(--sombra-tape);
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.92;
+  /* Bordes dentados característicos de cinta rasgada a mano */
+  clip-path: polygon(
+    0% 3px, 3px 0%, 97% 0%, 100% 3px, 98% 8px, 100% 14px, 98% 20px, 100% 25px, 97% 28px,
+    3px 28px, 0% 25px, 2% 20px, 0% 14px, 2% 8px
+  );
+}
+
+.washi-tape.tape-dorado {
+  background-color: rgba(201, 164, 100, 0.75);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255, 255, 255, 0.25) 5px, rgba(255, 255, 255, 0.25) 10px);
+}
+
+.washi-tape.tape-vino {
+  background-color: rgba(120, 35, 51, 0.7);
+}
+
+.washi-tape.tape-rosa {
+  background-color: rgba(232, 201, 204, 0.85);
+  background-image: radial-gradient(rgba(120, 35, 51, 0.2) 15%, transparent 16%);
+  background-size: 8px 8px;
+}
+
+.washi-tape.tape-beige {
+  background-color: rgba(232, 220, 201, 0.85);
+}
+
+/* Detalles decorativos dibujados */
+.garabato-amor {
+  font-family: var(--font-manuscrita);
+  color: var(--color-rojo-vino);
+  font-size: 1.5rem;
+  user-select: none;
+}
+
+/* ==========================================================================
+   📖 PORTADA DEL SCRAPBOOK
+   ========================================================================== */
+.portada-scrapbook {
+  background: var(--color-papel-marfil);
+  border-radius: 16px;
+  padding: 60px 40px;
+  box-shadow: var(--sombra-papel);
+  border: 1px solid rgba(220, 205, 190, 0.6);
+  position: relative;
+  text-align: center;
+  margin-bottom: 70px;
+  overflow: hidden;
+}
+
+.portada-scrapbook::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(201, 164, 100, 0.25);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.portada-encabezado {
+  max-width: 680px;
+  margin: 0 auto 35px;
+  position: relative;
+}
+
+.portada-fecha-sello {
+  display: inline-block;
+  font-family: var(--font-interfaz);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding: 4px 16px;
+  border-bottom: 1px dashed var(--color-dorado);
+}
+
+.portada-titulo {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  color: var(--color-rojo-vino);
+  line-height: 1.15;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.portada-subtitulo {
+  font-family: var(--font-lectura);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-texto-suave);
+  line-height: 1.5;
+}
+
+/* Marco Polaroid de la Portada */
+.polaroid-portada-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 20px auto 40px;
+  max-width: 380px;
+  width: 100%;
+}
+
+.polaroid-foto {
+  background: #FFFDF9;
+  padding: 14px 14px 45px 14px;
+  box-shadow: var(--sombra-polaroid);
+  border-radius: 3px;
+  transform: rotate(-2deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  cursor: pointer;
+  text-align: center;
+}
+
+.polaroid-foto:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: var(--sombra-elevada);
+}
+
+.polaroid-imagen-contenedor {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F3EDE3;
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.polaroid-imagen-contenedor img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.polaroid-foto:hover .polaroid-imagen-contenedor img {
+  transform: scale(1.04);
+}
+
+/* Placeholder artístico cuando no hay foto aún */
+.placeholder-arte {
+  padding: 20px;
+  text-align: center;
+  color: var(--color-texto-claro);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FBF6EE 0%, #EFE5D5 100%);
+  border: 1px dashed rgba(201, 164, 100, 0.4);
+}
+
+.placeholder-arte .icono {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+  color: var(--color-dorado);
+}
+
+.placeholder-arte .texto-placeholder {
+  font-family: var(--font-manuscrita);
+  font-size: 1.35rem;
+  color: var(--color-rojo-vino);
+  line-height: 1.2;
+}
+
+.placeholder-arte .instruccion-placeholder {
+  font-family: var(--font-interfaz);
+  font-size: 0.72rem;
+  color: var(--color-texto-claro);
+  margin-top: 5px;
+}
+
+.polaroid-pie-manuscrito {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  right: 14px;
+  font-family: var(--font-manuscrita);
+  font-size: 1.4rem;
+  color: var(--color-texto-tinta);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Anotaciones alrededor de la foto principal */
+.anotacion-manuscrita {
+  position: absolute;
+  font-family: var(--font-manuscrita);
+  font-size: 1.55rem;
+  color: var(--color-rojo-vino);
+  z-index: 5;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.anotacion-1 {
+  top: 15px;
+  left: -35px;
+  transform: rotate(-12deg);
+}
+
+.anotacion-2 {
+  bottom: 20px;
+  right: -30px;
+  transform: rotate(8deg);
+}
+
+.anotacion-3 {
+  top: 45%;
+  right: -45px;
+  transform: rotate(15deg);
+  font-size: 1.7rem;
+}
+
+/* ==========================================================================
+   ✨ SECCIÓN GENERAL DE SCRAPBOOK
+   ========================================================================== */
+.seccion-scrapbook {
+  margin-bottom: 85px;
+  position: relative;
+}
+
+.encabezado-seccion {
+  text-align: center;
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.seccion-badge {
+  display: inline-block;
+  font-family: var(--font-manuscrita);
+  font-size: 1.3rem;
+  color: var(--color-dorado);
+  margin-bottom: 4px;
+}
+
+.seccion-titulo {
+  font-family: var(--font-serif);
+  font-size: 2.3rem;
+  color: var(--color-rojo-vino);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.seccion-subtitulo {
+  font-family: var(--font-lectura);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-texto-suave);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   📖 SECCIÓN 1: "Y ENTONCES LLEGASTE TÚ"
+   ========================================================================== */
+.pagina-historia-scrapbook {
+  background: var(--color-papel-marfil);
+  border-radius: 12px;
+  padding: 45px 35px;
+  box-shadow: var(--sombra-papel);
+  border: 1px solid rgba(225, 215, 200, 0.7);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 35px;
+  align-items: center;
+  position: relative;
+}
+
+.item-historia-tarjeta {
+  background: #FFFDF9;
+  padding: 26px;
+  border-radius: 6px;
+  box-shadow: var(--sombra-papel);
+  border: 1px solid rgba(200, 185, 170, 0.35);
+  position: relative;
+}
+
+.item-historia-tarjeta.con-lineas {
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 28px,
+    var(--linea-cuaderno) 28px,
+    var(--linea-cuaderno) 29px
+  ), #FFFDF9;
+  line-height: 29px;
+}
+
+.item-historia-titulo {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-rojo-vino);
+  margin-bottom: 12px;
+}
+
+.item-historia-texto {
+  font-family: var(--font-lectura);
+  font-size: 0.98rem;
+  color: var(--color-texto-tinta);
+  margin-bottom: 15px;
+}
+
+.item-historia-margen {
+  font-family: var(--font-manuscrita);
+  font-size: 1.35rem;
+  color: var(--color-terracota);
+  text-align: right;
+  display: block;
+}
+
+.sello-postal {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  width: 55px;
+  height: 65px;
+  background: #FBF4EB;
+  border: 2px dashed #C9A464;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-interfaz);
+  font-size: 0.65rem;
+  color: var(--color-dorado);
+  font-weight: 700;
+  text-transform: uppercase;
+  transform: rotate(6deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+/* ==========================================================================
+   📸 SECCIÓN 2: "MIS RECUERDOS FAVORITOS CONTIGO" (GALERÍA POLAROID)
+   ========================================================================== */
+.galeria-polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 10px 0;
+}
+
+.polaroid-card {
+  background: #FFFDF9;
+  padding: 12px 12px 38px 12px;
+  box-shadow: var(--sombra-polaroid);
+  border-radius: 2px;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.35s ease;
+  cursor: pointer;
+  text-align: left;
+}
+
+.polaroid-card:hover, .polaroid-card:focus-visible {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: var(--sombra-elevada);
+  z-index: 20;
+}
+
+.polaroid-card-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F4EFE6;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+}
+
+.polaroid-card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.polaroid-card:hover .polaroid-card-img-wrap img {
+  transform: scale(1.06);
+}
+
+.polaroid-card-info {
+  margin-top: 10px;
+}
+
+.polaroid-card-titulo {
+  font-family: var(--font-manuscrita);
+  font-size: 1.35rem;
+  color: var(--color-texto-tinta);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.polaroid-card-fecha {
+  font-family: var(--font-interfaz);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  color: var(--color-texto-claro);
+  text-transform: uppercase;
+}
+
+.polaroid-tape {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(2deg);
+  width: 80px;
+}
+
+/* ==========================================================================
+   💌 SECCIÓN 3: "COSAS QUE AMO DE TI" (POST-ITS / NOTAS ADHESIVAS)
+   ========================================================================== */
+.mural-notas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 26px;
+}
+
+.nota-adhesiva {
+  padding: 26px 22px;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(45, 30, 20, 0.08), 0 1px 3px rgba(45, 30, 20, 0.04);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nota-adhesiva:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  box-shadow: 0 14px 28px rgba(45, 30, 20, 0.14);
+  z-index: 15;
+}
+
+.nota-rosa {
+  background: #F9ECEE;
+  border-top: 1px solid #ECCDD1;
+}
+
+.nota-crema {
+  background: #FDF9EE;
+  border-top: 1px solid #F1E5C8;
+}
+
+.nota-beige {
+  background: #F3ECE1;
+  border-top: 1px solid #E2D3BE;
+}
+
+.nota-terracota {
+  background: #FCECE8;
+  border-top: 1px solid #F5CDC4;
+}
+
+.chincheta-nota {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle at 35% 35%, #F4D38A, #B88B38);
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+}
+
+.nota-numero {
+  font-family: var(--font-interfaz);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-dorado);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+
+.nota-categoria {
+  font-family: var(--font-manuscrita);
+  font-size: 1.55rem;
+  color: var(--color-rojo-vino);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.nota-detalle {
+  font-family: var(--font-lectura);
+  font-size: 0.92rem;
+  color: var(--color-texto-tinta);
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   ⏳ SECCIÓN 4: "NUESTRO TIMELINE" (LÍNEA DIBUJADA A MANO)
+   ========================================================================== */
+.timeline-scrapbook {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* Cuerda / línea central trazada */
+.timeline-scrapbook::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-dorado) 0,
+    var(--color-dorado) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  transform: translateX(-50%);
+  opacity: 0.7;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 55px;
+  width: 50%;
+  padding: 0 35px;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+.timeline-nodo {
+  position: absolute;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  background: #FFFDF9;
+  border: 2px solid var(--color-rojo-vino);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item:nth-child(odd) .timeline-nodo {
+  right: -16px;
+}
+
+.timeline-item:nth-child(even) .timeline-nodo {
+  left: -16px;
+}
+
+.timeline-tarjeta {
+  background: var(--color-papel-marfil);
+  padding: 22px;
+  border-radius: 8px;
+  box-shadow: var(--sombra-papel);
+  border: 1px solid rgba(220, 205, 190, 0.6);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.timeline-tarjeta:hover {
+  transform: translateY(-3px);
+}
+
+.timeline-fecha {
+  font-family: var(--font-interfaz);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-dorado);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.timeline-titulo {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--color-rojo-vino);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.timeline-desc {
+  font-family: var(--font-lectura);
+  font-size: 0.92rem;
+  color: var(--color-texto-tinta);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   ☕ SECCIÓN 5: "PEQUEÑAS COSAS QUE ME HACEN PENSAR EN TI" (COLLAGE)
+   ========================================================================== */
+.collage-objetos-contenedor {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+.objeto-recorte {
+  background: #FFFDF9;
+  border-radius: 12px;
+  padding: 24px 18px;
+  text-align: center;
+  box-shadow: var(--sombra-papel);
+  border: 1px dashed rgba(200, 180, 160, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  user-select: none;
+}
+
+.objeto-recorte:hover, .objeto-recorte.abierto {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--sombra-elevada);
+  border-color: var(--color-rojo-vino);
+}
+
+.objeto-icono-circulo {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 12px;
+  background: var(--color-rosa-suave);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.objeto-recorte:hover .objeto-icono-circulo {
+  transform: rotate(8deg) scale(1.1);
+}
+
+.objeto-nombre {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--color-texto-tinta);
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.objeto-pista {
+  font-family: var(--font-manuscrita);
+  font-size: 1.15rem;
+  color: var(--color-dorado);
+}
+
+/* Mini nota que se expande al hacer click */
+.objeto-nota-secreta {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(120, 35, 51, 0.2);
+  font-family: var(--font-manuscrita);
+  font-size: 1.25rem;
+  color: var(--color-rojo-vino);
+  line-height: 1.35;
+  display: none;
+  animation: fadeIn 0.35s ease forwards;
+}
+
+.objeto-recorte.abierto .objeto-nota-secreta {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   🕊️ SECCIÓN 6: "SI PUDIERA GUARDAR MOMENTOS..."
+   ========================================================================== */
+.momento-guardar-contenedor {
+  background: linear-gradient(180deg, #F9F5EC 0%, #F5EFE3 100%);
+  border-radius: 16px;
+  padding: 55px 35px;
+  box-shadow: var(--sombra-papel);
+  border: 1px solid rgba(220, 205, 190, 0.6);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.frase-central-guardar {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.85rem;
+  color: var(--color-rojo-vino);
+  max-width: 680px;
+  margin: 0 auto 35px;
+  line-height: 1.45;
+  position: relative;
+}
+
+.frase-central-guardar::before {
+  content: "“";
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  color: var(--color-dorado-suave);
+  position: absolute;
+  top: -30px;
+  left: -20px;
+  opacity: 0.4;
+}
+
+.carta-manuscrita-hoja {
+  max-width: 640px;
+  margin: 0 auto;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 32px,
+    rgba(210, 195, 180, 0.3) 32px,
+    rgba(210, 195, 180, 0.3) 33px
+  ), #FFFDF9;
+  line-height: 33px;
+  padding: 40px 35px;
+  border-radius: 6px;
+  box-shadow: var(--sombra-papel);
+  text-align: left;
+  font-family: var(--font-lectura);
+  font-size: 1.05rem;
+  color: var(--color-texto-tinta);
+  position: relative;
+  white-space: pre-line;
+}
+
+.carta-manuscrita-hoja::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 30px;
+  width: 1px;
+  background: rgba(217, 136, 128, 0.35);
+}
+
+/* ==========================================================================
+   🗺️ SECCIÓN 7: "Y TODAVÍA NOS QUEDAN MUCHÍSIMAS HISTORIAS" (FUTURO)
+   ========================================================================== */
+.mural-suenos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 35px;
+}
+
+.sueno-tarjeta {
+  background: var(--color-papel-marfil);
+  padding: 24px 20px;
+  border-radius: 8px;
+  box-shadow: var(--sombra-papel);
+  border: 1px solid rgba(220, 205, 190, 0.6);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.sueno-tarjeta:hover {
+  transform: translateY(-4px);
+}
+
+.sueno-etiqueta {
+  display: inline-block;
+  font-family: var(--font-interfaz);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-dorado);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.sueno-icono {
+  font-size: 22px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.sueno-texto {
+  font-family: var(--font-manuscrita);
+  font-size: 1.45rem;
+  color: var(--color-texto-tinta);
+  line-height: 1.3;
+}
+
+.cierre-esperanzador-frase {
+  text-align: center;
+  font-family: var(--font-manuscrita);
+  font-size: 2rem;
+  color: var(--color-rojo-vino);
+  margin-top: 30px;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   💌 SECCIÓN FINAL: CARTA DE CUMPLEAÑOS
+   ========================================================================== */
+.seccion-carta-cumpleanos {
+  margin-bottom: 70px;
+  position: relative;
+}
+
+.carta-sobre-abierto {
+  background: #FFFDF9;
+  border-radius: 12px;
+  padding: 60px 45px;
+  box-shadow: var(--sombra-elevada);
+  border: 1px solid rgba(210, 190, 170, 0.6);
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carta-sobre-abierto::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 1px solid rgba(201, 164, 100, 0.25);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+.carta-titulo-cumple {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--color-rojo-vino);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.carta-cuerpo-texto {
+  font-family: var(--font-lectura);
+  font-size: 1.05rem;
+  color: var(--color-texto-tinta);
+  line-height: 1.85;
+  white-space: pre-line;
+  margin-bottom: 35px;
+}
+
+.carta-firma-bloque {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.carta-despedida {
+  font-family: var(--font-lectura);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-texto-suave);
+  margin-bottom: 4px;
+}
+
+.carta-firma-nombre {
+  font-family: var(--font-manuscrita);
+  font-size: 2.2rem;
+  color: var(--color-rojo-vino);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.carta-firma-fecha {
+  font-family: var(--font-interfaz);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: var(--color-dorado);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Partículas flotantes alrededor de la carta */
+.particulas-flotantes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.particula-item {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0.6;
+  animation: flotarParticula 6s infinite ease-in-out;
+}
+
+@keyframes flotarParticula {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(10deg); }
+}
+
+/* ==========================================================================
+   ✨ DETALLE ESPECIAL FINAL (BOTÓN Y MODAL SORPRESA)
+   ========================================================================== */
+.bloque-sorpresa-final {
+  text-align: center;
+  margin: 50px 0 30px;
+}
+
+.btn-sorpresa-magica {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, var(--color-rojo-vino) 0%, #9E2B3E 100%);
+  color: #FFFDF9;
+  border: none;
+  padding: 16px 38px;
+  border-radius: 50px;
+  font-family: var(--font-interfaz);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(120, 35, 51, 0.35);
+  transition: var(--transicion-suave);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-sorpresa-magica:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 16px 35px rgba(120, 35, 51, 0.45);
+}
+
+.btn-sorpresa-magica::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: rotate(30deg);
+  animation: brilloBoton 4s infinite linear;
+}
+
+@keyframes brilloBoton {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  25%, 100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* Modal Sorpresa Oculta */
+.modal-acceso-sorpresa,
+.modal-sorpresa {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(30, 20, 20, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal-acceso-sorpresa {
+  z-index: 10002;
+}
+
+.modal-acceso-sorpresa.activo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-contenido-acceso {
+  background: #FFFDF9;
+  border: 2px solid var(--color-dorado);
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  max-width: 420px;
+  padding: 35px;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%;
+}
+
+.modal-acceso-sorpresa.activo .modal-contenido-acceso {
+  transform: scale(1);
+}
+
+.etiqueta-pin {
+  color: var(--color-texto-tinta);
+  display: block;
+  font-family: var(--font-interfaz);
+  margin-bottom: 10px;
+}
+
+.input-pin-sorpresa {
+  border: 1px solid rgba(200, 180, 160, 0.8);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: var(--font-interfaz);
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
+  padding: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.input-pin-sorpresa:focus {
+  border-color: var(--color-dorado);
+  outline: 2px solid rgba(212, 175, 55, 0.25);
+}
+
+.pista-pin-sorpresa {
+  color: var(--color-rojo-vino);
+  font-family: var(--font-lectura);
+  font-style: italic;
+  margin: 10px 0;
+}
+
+.error-pin-sorpresa {
+  color: var(--color-rojo-vino);
+  font-family: var(--font-interfaz);
+  font-size: 0.9rem;
+  min-height: 1.4em;
+}
+
+.acciones-acceso-sorpresa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.acciones-acceso-sorpresa .btn-sorpresa-magica {
+  border-radius: 30px;
+  font-size: 0.95rem;
+  padding: 10px 28px;
+}
+
+.modal-sorpresa.activo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-contenido-dorado {
+  background: #FFFDF9;
+  border-radius: 16px;
+  padding: 45px 35px 35px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--color-dorado);
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-sorpresa.activo .modal-contenido-dorado {
+  transform: scale(1);
+}
+
+.modal-icono {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  display: inline-block;
+  animation: latidoIcono 1.5s infinite ease;
+}
+
+@keyframes latidoIcono {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.modal-titulo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--color-rojo-vino);
+  margin-bottom: 16px;
+}
+
+.modal-mensaje {
+  font-family: var(--font-lectura);
+  font-size: 1.05rem;
+  color: var(--color-texto-tinta);
+  line-height: 1.7;
+  white-space: pre-line;
+  margin-bottom: 30px;
+}
+
+.btn-cerrar-modal {
+  background: var(--color-papel-beige);
+  color: var(--color-texto-tinta);
+  border: 1px solid rgba(200, 180, 160, 0.6);
+  padding: 10px 28px;
+  border-radius: 30px;
+  font-family: var(--font-interfaz);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transicion-rapida);
+}
+
+.btn-cerrar-modal:hover {
+  background: var(--color-rojo-vino);
+  color: #FFFDF9;
+  border-color: var(--color-rojo-vino);
+}
+
+/* ==========================================================================
+   🖼️ MODAL VISOR DE FOTO DETALLADA (LIGHTBOX DE RECUERDO)
+   ========================================================================== */
+.modal-detalle-foto {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  background: rgba(25, 18, 18, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-detalle-foto.activo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tarjeta-polaroid-expandida {
+  background: #FFFDF9;
+  padding: 20px 20px 30px;
+  border-radius: 4px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+  position: relative;
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-detalle-foto.activo .tarjeta-polaroid-expandida {
+  transform: scale(1);
+}
+
+.modal-foto-grande-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #F4EFE6;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-foto-grande-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-foto-titulo {
+  font-family: var(--font-manuscrita);
+  font-size: 1.85rem;
+  color: var(--color-rojo-vino);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.modal-foto-fecha {
+  font-family: var(--font-interfaz);
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: var(--color-dorado);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.modal-foto-desc {
+  font-family: var(--font-lectura);
+  font-size: 0.98rem;
+  color: var(--color-texto-tinta);
+  line-height: 1.6;
+}
+
+.btn-cerrar-foto {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: var(--color-texto-suave);
+  cursor: pointer;
+  line-height: 1;
+  padding: 6px;
+  transition: color 0.2s ease;
+}
+
+.btn-cerrar-foto:hover {
+  color: var(--color-rojo-vino);
+}
+
+/* ==========================================================================
+   🎊 LIENZO DE CONFETI Y ESTRELLAS (CANVAS)
+   ========================================================================== */
+#canvas-confeti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10005;
+}
+
+/* ==========================================================================
+   📱 ADAPTABILIDAD RESPONSIVE (MOBILE FIRST & DESKTOP)
+   ========================================================================== */
+@media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
+  .album-contenedor {
+    padding: 12px 14px 80px;
+  }
+
+  .portada-scrapbook {
+    padding: 40px 20px;
+    margin-bottom: 50px;
+  }
+
+  .portada-titulo {
+    font-size: 2.2rem;
+  }
+
+  .anotacion-1 {
+    top: 5px;
+    left: -10px;
+    font-size: 1.3rem;
+  }
+
+  .anotacion-2 {
+    bottom: 5px;
+    right: -10px;
+    font-size: 1.3rem;
+  }
+
+  .anotacion-3 {
+    display: none;
+  }
+
+  .seccion-titulo {
+    font-size: 1.9rem;
+  }
+
+  .pagina-historia-scrapbook {
+    padding: 30px 18px;
+    gap: 24px;
+  }
+
+  .galeria-polaroid-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .polaroid-card {
+    padding: 8px 8px 28px 8px;
+  }
+
+  .polaroid-card-titulo {
+    font-size: 1.15rem;
+  }
+
+  /* Timeline en una sola columna en móvil */
+  .timeline-scrapbook::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 0;
+    text-align: left !important;
+  }
+
+  .timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-nodo,
+  .timeline-item:nth-child(even) .timeline-nodo {
+    left: 4px;
+    right: auto;
+  }
+
+  .carta-sobre-abierto {
+    padding: 40px 22px;
+  }
+
+  .carta-titulo-cumple {
+    font-size: 2rem;
+  }
+
+  .reproductor-flotante {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 12px 6px 8px;
+  }
+}
+
+@media (max-width: 420px) {
+  .galeria-polaroid-grid {
+    grid-template-columns: 1fr;
+  }
+}
